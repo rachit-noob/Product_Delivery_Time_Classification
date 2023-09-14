@@ -42,7 +42,7 @@ if st.button('Predict'):
         'Cost_of_the_Product': [cost_of_the_product],
         'Prior_purchases': [prior_purchases],
         'Product_importance': [product_importance],
-        'Gender' : [gender_mapping]
+        'Gender' : [gender_mapping],
         'Discount_offered': [discount_offered],
         'Weight_in_gms': [weight_in_gms],
         'Warehouse_block_A': [warehouse_encoded[0]],
