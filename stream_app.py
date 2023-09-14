@@ -27,9 +27,14 @@ mode_of_shipment = st.selectbox('Mode of Shipment', ['Flight', 'Road', 'Ship'])
 
 # Get one-hot encoded values based on user selection
 gender_encoded = [1 if gender == 'Male' else 0]
-warehouse_encoded = [0] * 5
-warehouse_encoded['ABCDE'.index(warehouse_block)] = 1
-shipment_encoded = [1 if mode_of_shipment == mode else 0 for mode in ['Flight', 'Road', 'Ship']]
+warehouse_mapping = {'A': [1, 0, 0, 0, 0],
+                     'B': [0, 1, 0, 0, 0],
+                     'C': [0, 0, 1, 0, 0],
+                     'D': [0, 0, 0, 1, 0],
+                     'F': [0, 0, 0, 0, 1]}
+warehouse_encoded = warehouse_mapping.get(warehouse_block, [0, 0, 0, 0, 0])
+shipment_mapping = {'Flight': [1, 0, 0], 'Road': [0, 1, 0], 'Ship': [0, 0, 1]}
+shipment_encoded = shipment_mapping.get(mode_of_shipment, [0, 0, 0])
 
 # Predict when the user clicks the "Predict" button
 if st.button('Predict'):
