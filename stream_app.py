@@ -25,7 +25,7 @@ warehouse_block = st.selectbox('Warehouse Block', ['A', 'B', 'C', 'D', 'F'])
 mode_of_shipment = st.selectbox('Mode of Shipment', ['Flight', 'Road', 'Ship'])
 
 # Map gender, warehouse_block, and mode_of_shipment to one-hot encoded values
-gender_mapping = {'Male': [1, 0], 'Female': [0, 1]}
+gender_mapping = {'Male': 1, 'Female': 0}
 warehouse_mapping = {'A': [1, 0, 0, 0, 0], 'B': [0, 1, 0, 0, 0], 'C': [0, 0, 1, 0, 0], 'D': [0, 0, 0, 1, 0], 'F': [0, 0, 0, 0, 1]}
 shipment_mapping = {'Flight': [1, 0, 0], 'Road': [0, 1, 0], 'Ship': [0, 0, 1]}
 
@@ -42,8 +42,7 @@ if st.button('Predict'):
         'Cost_of_the_Product': [cost_of_the_product],
         'Prior_purchases': [prior_purchases],
         'Product_importance': [product_importance],
-        'Gender_Male': [gender_encoded[0]],
-        'Gender_Female': [gender_encoded[1]],
+        'Gender' : [gender_mapping]
         'Discount_offered': [discount_offered],
         'Weight_in_gms': [weight_in_gms],
         'Warehouse_block_A': [warehouse_encoded[0]],
