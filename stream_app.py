@@ -50,6 +50,7 @@ if st.button('Predict'):
         'Warehouse_block_B': [warehouse_encoded[1]],
         'Warehouse_block_C': [warehouse_encoded[2]],
         'Warehouse_block_D': [warehouse_encoded[3]],
+        'Warehouse_block_F': [warehouse_encoded[4]],
         'Mode_of_Shipment_Flight': [shipment_encoded[0]],
         'Mode_of_Shipment_Road': [shipment_encoded[1]],
         'Mode_of_Shipment_Ship': [shipment_encoded[2]]
