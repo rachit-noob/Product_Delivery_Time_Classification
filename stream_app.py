@@ -47,8 +47,17 @@ shipment_encoded = shipment_mapping.get(mode_of_shipment, [0, 0, 0])
 
 # Predict when the user clicks the "Predict" button
 if st.button('Predict'):
-    if not all([customer_care_calls, customer_rating, cost_of_the_product, prior_purchases, product_importance,
-                discount_offered, weight_in_gms]):
+    if (
+        customer_care_calls <= 0
+        or customer_rating < 1
+        or customer_rating > 5
+        or cost_of_the_product <= 0.0
+        or prior_purchases < 0
+        or product_importance not in ['low', 'medium', 'high']
+        or discount_offered < 0.0
+        or weight_in_gms <= 0.0
+    ):
+
         st.warning("Please fill in all required fields.")
     else:
         input_data = pd.DataFrame({
