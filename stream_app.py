@@ -7,7 +7,7 @@ from tensorflow.keras.models import model_from_json
 
 # Load your model and dataset here
 try:
-    with open('../model_pickle/deep_ann_model_architecture.json', 'r') as model_architecture_file:
+    with open('model_pickle/deep_ann_model_architecture.json', 'r') as model_architecture_file:
         model_json = model_architecture_file.read()
         loaded_model = model_from_json(model_json)
 
