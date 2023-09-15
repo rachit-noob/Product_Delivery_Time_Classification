@@ -12,7 +12,7 @@ try:
         loaded_model = model_from_json(model_json)
 
 # Load the model weights
-    loaded_model.load_weights('deep_ann_model_weights.h5')
+    loaded_model.load_weights('model_pickle/deep_ann_model_weights.h5')
 except FileNotFoundError:
     st.error("Model file not found. Please upload the model file.")
 except Exception as e:
