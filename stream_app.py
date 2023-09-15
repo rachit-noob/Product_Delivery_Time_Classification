@@ -1,10 +1,18 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import pickle
+import tensorflow as tf
+from tensorflow.keras.models import model_from_json
 
 # Load your model and dataset here
 try:
-    pipeline = joblib.load('SVM_pipeline_new.pkl')  # Replace with the correct pickle file path
+    with open('../model_pickle/deep_ann_model_architecture.json', 'r') as model_architecture_file:
+        model_json = model_architecture_file.read()
+        loaded_model = model_from_json(model_json)
+
+# Load the model weights
+    loaded_model.load_weights('deep_ann_model_weights.h5')
 except FileNotFoundError:
     st.error("Model file not found. Please upload the model file.")
 except Exception as e:
@@ -63,7 +71,8 @@ if st.button('Predict'):
 
         try:
             # Use the loaded model to make predictions
-            predictions = pipeline.predict(input_data)
+            predictions = loaded_model.predict(input_data)
+            predictions = (predictions > 0.5).astype(int)[0]
 
             if predictions[0] == 1:
                 st.write('Product Reached With Delay')
