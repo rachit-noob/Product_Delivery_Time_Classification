@@ -24,17 +24,18 @@ st.title('Machine Learning Prediction')
 # Define input fields for prediction
 customer_care_calls = st.number_input('Customer Care Calls', min_value=0)
 customer_rating = st.number_input('Customer Rating', min_value=1, max_value=5)
-cost_of_the_product = st.number_input('Cost of the Product', step=0.01)
+cost_of_the_product = st.number_input('Cost of the Product', min_value=0, step=0.01)
 prior_purchases = st.number_input('Prior Purchases', min_value=0)
-product_importance = st.number_input('Product Importance', min_value=0)
+product_importance = st.number_input('Product Importance', ['low', 'medium', 'high'])
 gender = st.selectbox('Gender', ['Male', 'Female'])
-discount_offered = st.number_input('Discount Offered', step=0.01)
-weight_in_gms = st.number_input('Weight in grams', step=0.01)
+discount_offered = st.number_input('Discount Offered', min_value=0, step=0.01)
+weight_in_gms = st.number_input('Weight in grams', min_value=0, step=0.01)
 warehouse_block = st.selectbox('Warehouse Block', ['A', 'B', 'C', 'D', 'F'])
 mode_of_shipment = st.selectbox('Mode of Shipment', ['Flight', 'Road', 'Ship'])
 
 # Get one-hot encoded values based on user selection
 gender_encoded = [1 if gender == 'Male' else 0]
+product_imp_mapping = {'low' : 1, 'medium' : 2, 'high' : 3}
 warehouse_mapping = {'A': [1, 0, 0, 0, 0],
                      'B': [0, 1, 0, 0, 0],
                      'C': [0, 0, 1, 0, 0],
@@ -55,7 +56,9 @@ if st.button('Predict'):
             'Customer_rating': [customer_rating],
             'Cost_of_the_Product': [cost_of_the_product],
             'Prior_purchases': [prior_purchases],
-            'Product_importance': [product_importance],
+            'Product_importance': [product_imp_mapping[0]],
+            'Product_importance': [product_imp_mapping[1]],
+            'Product_importance': [product_imp_mapping[2]],
             'Gender': gender_encoded,
             'Discount_offered': [discount_offered],
             'Weight_in_gms': [weight_in_gms],
