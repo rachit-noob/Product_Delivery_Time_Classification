@@ -11,7 +11,7 @@ try:
         model_json = model_architecture_file.read()
         loaded_model = model_from_json(model_json)
 
-# Load the model weights
+    # Load the model weights
     loaded_model.load_weights('model_pickle/deep_ann_model_weights.h5')
 except FileNotFoundError:
     st.error("Model file not found. Please upload the model file.")
@@ -26,7 +26,7 @@ customer_care_calls = st.number_input('Customer Care Calls', min_value=0)
 customer_rating = st.number_input('Customer Rating', min_value=1, max_value=5)
 cost_of_the_product = st.number_input('Cost of the Product', min_value=0.0, step=0.01)
 prior_purchases = st.number_input('Prior Purchases', min_value=0)
-product_importance = st.number_input('Product Importance', ['low', 'medium', 'high'])
+product_importance = st.selectbox('Product Importance', ['low', 'medium', 'high'])
 gender = st.selectbox('Gender', ['Male', 'Female'])
 discount_offered = st.number_input('Discount Offered', min_value=0.0, step=0.01)
 weight_in_gms = st.number_input('Weight in grams', min_value=0.0, step=0.01)
@@ -57,7 +57,6 @@ if st.button('Predict'):
         or discount_offered < 0.0
         or weight_in_gms <= 0.0
     ):
-
         st.warning("Please fill in all required fields.")
     else:
         input_data = pd.DataFrame({
