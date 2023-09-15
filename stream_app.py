@@ -48,7 +48,7 @@ shipment_encoded = shipment_mapping.get(mode_of_shipment, [0, 0, 0])
 # Predict when the user clicks the "Predict" button
 if st.button('Predict'):
     if (
-        customer_care_calls <= 0
+        customer_care_calls < 0
         or customer_rating < 1
         or customer_rating > 5
         or cost_of_the_product <= 0.0
