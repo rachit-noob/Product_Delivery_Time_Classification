@@ -6,7 +6,7 @@ import tensorflow as tf
 from tensorflow.keras.models import model_from_json
 
 try:
-    pipeline = joblib.load('Product_Delivery_Time_Classification/model_pickle/binary_kmeans_pipeline.pkl')  # Replace with the correct pickle file path
+    pipeline = joblib.load('model_pickle/binary_kmeans_pipeline.pkl')  # Replace with the correct pickle file path
 except Exception as e:
     st.error(f"Error loading the model or dataset: {str(e)}")
 
